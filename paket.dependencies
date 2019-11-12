@@ -1,0 +1,6 @@
+framework: auto-detect
+
+source https://api.nuget.org/v3/index.json
+source https://www.myget.org/F/natemcmaster/api/v3/index.json
+
+nuget System.Collections.Immutable ~> 1.6.0
