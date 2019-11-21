@@ -24,8 +24,9 @@ namespace Gradient_color_picker_test
         {
             const int sameValue = 0;
             Assert.Throws<InvalidOperationException>(() =>
-                WithColor(new GradientColorByValue(Color.Green, sameValue))
+                WithColor(new GradientColorByValue(Color.Red, -10))
                     .Add(new GradientColorByValue(Color.Green, sameValue))
+                    .Add(new GradientColorByValue(Color.Blue, sameValue))
                     .Build());
         }
     }
