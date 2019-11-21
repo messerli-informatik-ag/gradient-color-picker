@@ -8,9 +8,8 @@ namespace Gradient_color_picker
     {
         private readonly IImmutableList<GradientColorByValue> _gradientColorList = ImmutableList<GradientColorByValue>.Empty;
 
-        private GradientColorBuilder(GradientColorByValue value)
+        private GradientColorBuilder()
         {
-            Add(value);
         }
 
         private GradientColorBuilder(IImmutableList<GradientColorByValue> gradientColorList)
@@ -19,7 +18,7 @@ namespace Gradient_color_picker
         }
 
         public static GradientColorBuilder WithColor(GradientColorByValue colorByValue)
-            => new GradientColorBuilder(colorByValue);
+            => new GradientColorBuilder().Add(colorByValue);
 
         public GradientColorBuilder Add(GradientColorByValue gradientColor)
         {
