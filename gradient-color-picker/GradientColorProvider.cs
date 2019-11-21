@@ -47,16 +47,11 @@ namespace Gradient_color_picker
 
             var numbersOfValues = Math.Abs(higherGradientColorByValue!.Value - smallerGradientColorByValue.Value);
 
-            var newRed = GetColorValue(smallerGradientColorByValue.Color.R, higherGradientColorByValue.Color.R, value, numbersOfValues);
-            var newGreen = GetColorValue(smallerGradientColorByValue.Color.G, higherGradientColorByValue.Color.G, value, numbersOfValues);
-            var newBlue = GetColorValue(smallerGradientColorByValue.Color.B, higherGradientColorByValue.Color.B, value, numbersOfValues);
+            var newRed = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Color.R, higherGradientColorByValue.Color.R, value, numbersOfValues);
+            var newGreen = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Color.G, higherGradientColorByValue.Color.G, value, numbersOfValues);
+            var newBlue = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Color.B, higherGradientColorByValue.Color.B, value, numbersOfValues);
 
             return Color.FromArgb(newRed, newGreen, newBlue);
-        }
-
-        private static int GetColorValue(int startColor, int endColor, int value, int numbersOfValues)
-        {
-            return ((value * startColor) + ((numbersOfValues - value) * endColor)) / numbersOfValues;
         }
     }
 }
