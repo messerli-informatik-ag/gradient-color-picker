@@ -17,6 +17,11 @@ namespace Gradient_color_picker
 
         public Color ColorPicker(int value)
         {
+            if (_gradientColorList.Any(item => item.Value == value))
+            {
+                return _gradientColorList.First(item => item.Value == value).Color;
+            }
+
             var nextSmallerGradientColorByValue = _gradientColorList.ToList().LastOrDefault(item => item.Value < value);
             var nextHigherGradientColorByValue = _gradientColorList.ToList().FirstOrDefault(item => item.Value > value);
 
@@ -51,7 +56,7 @@ namespace Gradient_color_picker
 
         private static int GetColorValue(int startColor, int endColor, int value, int numbersOfValues)
         {
-            return (value * startColor) + ((numbersOfValues - value) * endColor);
+            return ((value * startColor) + ((numbersOfValues - value) * endColor)) / numbersOfValues;
         }
     }
 }
