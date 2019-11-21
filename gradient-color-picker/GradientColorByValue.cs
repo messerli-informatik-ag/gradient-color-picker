@@ -2,7 +2,7 @@
 
 namespace Gradient_color_picker
 {
-    internal class GradientColorByValue
+    public class GradientColorByValue
     {
         public GradientColorByValue(Color color, int value)
         {

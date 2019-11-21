@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Gradient_color_picker
 {
-    internal class GradientColorProvider : IGradientColorProvider
+    public class GradientColorProvider : IGradientColorProvider
     {
         private readonly IReadOnlyCollection<GradientColorByValue> _gradientColorList;
 

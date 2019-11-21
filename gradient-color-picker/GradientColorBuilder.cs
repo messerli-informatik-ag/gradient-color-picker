@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Gradient_color_picker
 {
-    internal class GradientColorBuilder
+    public class GradientColorBuilder
     {
         private readonly IImmutableList<GradientColorByValue> _gradientColorList = ImmutableList<GradientColorByValue>.Empty;
 
