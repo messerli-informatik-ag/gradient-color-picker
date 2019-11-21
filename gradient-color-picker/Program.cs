@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace gradient_color_picker
+namespace Gradient_color_picker
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
         }

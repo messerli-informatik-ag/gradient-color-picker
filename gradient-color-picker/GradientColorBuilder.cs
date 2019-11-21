@@ -1,35 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Collections.Immutable;
+using System.Linq;
 
-namespace gradient_color_picker
+namespace Gradient_color_picker
 {
-    class GradientColorBuilder
+    internal class GradientColorBuilder
     {
-        private readonly IImmutableList<GradientColor> _gradientColorList;
+        private readonly IImmutableList<GradientColorByValue> _gradientColorList = ImmutableList<GradientColorByValue>.Empty;
 
-        public GradientColorBuilder()
+        private GradientColorBuilder(GradientColorByValue value)
         {
-            _gradientColorList = new List<GradientColor>();
+            Add(value);
         }
 
-        public GradientColorBuilder(List<GradientColor> gradientColorList)
+        private GradientColorBuilder(IImmutableList<GradientColorByValue> gradientColorList)
         {
             _gradientColorList = gradientColorList;
         }
 
-        public GradientColorBuilder AddGradientColor(GradientColor gradientColor)
+        public static GradientColorBuilder WithColor(GradientColorByValue colorByValue)
+            => new GradientColorBuilder(colorByValue);
+
+        public GradientColorBuilder Add(GradientColorByValue gradientColor)
         {
-            return DeepClone(_gradientColorList.Add(gradientColor));
+            if (_gradientColorList.ToList().Any(item => item.Value == gradientColor.Value))
+            {
+                throw new InvalidOperationException();
+            }
+
+            return ShallowClone(_gradientColorList.Add(gradientColor));
         }
 
-        public GradientColorController Build()
-        {
-            return new GradientColorController();
-        }
+        public GradientColorProvider Build()
+            => new GradientColorProvider(_gradientColorList.OrderBy(item => item.Value).ToImmutableList());
 
-        private GradientColorBuilder DeepClone(List<GradientColor> gradientColors)
-        {
-            return new GradientColorBuilder(gradientColors);
-        }
+        private static GradientColorBuilder ShallowClone(IImmutableList<GradientColorByValue> gradientColors)
+            => new GradientColorBuilder(gradientColors);
     }
 }
