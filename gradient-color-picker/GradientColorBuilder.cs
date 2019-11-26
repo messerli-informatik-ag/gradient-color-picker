@@ -24,7 +24,7 @@ namespace Gradient_color_picker
         {
             if (_gradientColorList.Any(item => item.Value == gradientColor.Value))
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException($"Gradient color value ({gradientColor.Value}) is already defined");
             }
 
             return ShallowClone(_gradientColorList.Add(gradientColor));
