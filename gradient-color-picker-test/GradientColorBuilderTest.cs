@@ -14,7 +14,7 @@ namespace Gradient_color_picker_test
             var gradientColorProvider = WithColor(new GradientColorByValue(Color.Red, -10))
                 .Build();
 
-            Assert.Equal(gradientColorProvider.ColorPicker(-10), Color.Red);
+            Assert.Equal(gradientColorProvider.PickColor(-10), Color.Red);
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace Gradient_color_picker_test
                 .Add(new GradientColorByValue(Color.Blue, 10))
                 .Build();
 
-            Assert.Equal(gradientColorProvider.ColorPicker(0), Color.Green);
+            Assert.Equal(gradientColorProvider.PickColor(0), Color.Green);
         }
 
         [Fact]
