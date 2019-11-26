@@ -30,17 +30,17 @@ namespace Gradient_color_picker
 
         private static Color GetColor(GradientColorByValue? smallerGradientColorByValue, GradientColorByValue? higherGradientColorByValue, int value)
         {
-            if (smallerGradientColorByValue == null && higherGradientColorByValue == null)
+            if (smallerGradientColorByValue is null && higherGradientColorByValue is null)
             {
                 throw new InvalidOperationException();
             }
 
-            if (smallerGradientColorByValue == null)
+            if (smallerGradientColorByValue is null)
             {
                 return higherGradientColorByValue!.Color;
             }
 
-            if (higherGradientColorByValue == null)
+            if (higherGradientColorByValue is null)
             {
                 return smallerGradientColorByValue!.Color;
             }
