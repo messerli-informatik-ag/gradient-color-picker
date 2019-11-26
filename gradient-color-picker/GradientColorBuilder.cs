@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Gradient_color_picker
+namespace Messerli.GradientColorPicker
 {
     public class GradientColorBuilder
     {

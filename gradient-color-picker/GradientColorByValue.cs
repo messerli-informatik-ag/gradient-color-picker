@@ -2,7 +2,7 @@
 
 #pragma warning disable CS0660, CS0661
 
-namespace Gradient_color_picker
+namespace Messerli.GradientColorPicker
 {
     [Equals]
     public class GradientColorByValue

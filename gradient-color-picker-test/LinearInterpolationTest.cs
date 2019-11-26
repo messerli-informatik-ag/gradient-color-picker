@@ -1,5 +1,5 @@
 ﻿using System;
-using Gradient_color_picker;
+using Messerli.GradientColorPicker;
 using Xunit;
 
 namespace Messerli.GradientColorPickerTest

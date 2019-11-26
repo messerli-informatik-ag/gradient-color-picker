@@ -1,4 +1,4 @@
-﻿namespace Gradient_color_picker
+﻿namespace Messerli.GradientColorPicker
 {
     public static class LinearInterpolation
     {

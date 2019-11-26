@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
-using Gradient_color_picker;
+using Messerli.GradientColorPicker;
 using Xunit;
 
-namespace Gradient_color_picker_test
+namespace Messerli.GradientColorPickerTest
 {
     public partial class GradientColorBuilderTest
     {
