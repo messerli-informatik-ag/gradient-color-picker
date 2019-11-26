@@ -22,7 +22,7 @@ namespace Gradient_color_picker
 
         public GradientColorBuilder Add(GradientColorByValue gradientColor)
         {
-            if (_gradientColorList.ToList().Any(item => item.Value == gradientColor.Value))
+            if (_gradientColorList.Any(item => item.Value == gradientColor.Value))
             {
                 throw new InvalidOperationException();
             }
