@@ -9,7 +9,16 @@ namespace Gradient_color_picker_test
     public partial class GradientColorBuilderTest
     {
         [Fact]
-        public void CreateGradientColorBuilder()
+        public void CreatesSingleGradientColor()
+        {
+            var gradientColorProvider = WithColor(new GradientColorByValue(Color.Red, -10))
+                .Build();
+
+            Assert.Equal(gradientColorProvider.ColorPicker(-10), Color.Red);
+        }
+
+        [Fact]
+        public void CreatesMultipleGradientColors()
         {
             var gradientColorProvider = WithColor(new GradientColorByValue(Color.Red, -10))
                 .Add(new GradientColorByValue(Color.Green, 0))
