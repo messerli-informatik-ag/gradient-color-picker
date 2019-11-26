@@ -10,7 +10,8 @@ namespace Gradient_color_picker_test
         private const int GreenColorValue = 0;
         private const int BlueColorValue = 10;
 
-        private readonly GradientColorProvider _gradientColorProvider = GradientColorBuilder.WithColor(new GradientColorByValue(Color.Red, RedColorValue))
+        private readonly GradientColorProvider _gradientColorProvider = GradientColorBuilder
+            .WithColor(new GradientColorByValue(Color.Red, RedColorValue))
             .Add(new GradientColorByValue(Color.Green, GreenColorValue))
             .Add(new GradientColorByValue(Color.Blue, BlueColorValue))
             .Build();
@@ -35,11 +36,23 @@ namespace Gradient_color_picker_test
             Assert.Equal(_gradientColorProvider.PickColor(20), Color.Blue);
         }
 
-        [Fact]
-        public void CalculatesLinearInterpolationForGradientColor()
+        [Theory]
+        [MemberData(nameof(GetGradientColorData))]
+        public void CalculatesLinearInterpolationForGradientColor(int value, Color selectedColor)
         {
-            var selectedColor = _gradientColorProvider.PickColor(5);
-            Assert.True(selectedColor.Equals(Color.FromArgb(0, 64, 127)));
+            Assert.Equal(_gradientColorProvider.PickColor(value), selectedColor);
         }
+
+        public static TheoryData<int, Color> GetGradientColorData()
+            => new TheoryData<int, Color>
+            {
+                { RedColorValue, Color.Red },
+                { GreenColorValue, Color.Green },
+                { BlueColorValue, Color.Blue },
+                { -2, Color.FromArgb(51, 102, 0) },
+                { 2, Color.FromArgb(0, 103, 51) },
+                { -5, Color.FromArgb(128, 64, 0) },
+                { 5, Color.FromArgb(0, 64, 127) },
+            };
     }
 }
