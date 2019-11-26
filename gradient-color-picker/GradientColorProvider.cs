@@ -15,7 +15,7 @@ namespace Gradient_color_picker
             _gradientColorList = gradientColorList;
         }
 
-        public Color ColorPicker(int value)
+        public Color PickColor(int value)
         {
             if (_gradientColorList.Any(item => item.Value == value))
             {

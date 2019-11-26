@@ -2,6 +2,6 @@
 {
     internal interface IGradientColorProvider
     {
-        System.Drawing.Color ColorPicker(int value);
+        System.Drawing.Color PickColor(int value);
     }
 }
