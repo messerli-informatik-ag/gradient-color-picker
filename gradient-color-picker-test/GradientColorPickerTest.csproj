@@ -12,8 +12,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\gradient-color-picker\gradient-color-picker.csproj" />
-  </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\gradient-color-picker\GradientColorPicker.csproj" />
+  </ItemGroup>
 </Project>
