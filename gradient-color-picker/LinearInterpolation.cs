@@ -1,10 +1,10 @@
 ﻿namespace Gradient_color_picker
 {
-    public class LinearInterpolation
+    public static class LinearInterpolation
     {
-        public static int GetDataPoint(int startRange, int endRange, int value, int numbersOfSteps)
+        public static double GetDataPoint(int x1, int x2, int y1, int y2, int x)
         {
-            return ((value * startRange) + ((numbersOfSteps - value) * endRange)) / numbersOfSteps;
+            return ((x - x1) * (y2 - y1) / (x2 - x1)) + y1;
         }
     }
 }

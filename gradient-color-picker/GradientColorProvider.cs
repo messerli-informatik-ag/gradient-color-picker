@@ -45,13 +45,11 @@ namespace Gradient_color_picker
                 return smallerGradientColorByValue!.Color;
             }
 
-            var numbersOfValues = Math.Abs(higherGradientColorByValue!.Value - smallerGradientColorByValue.Value);
+            var newRed = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.R, higherGradientColorByValue.Color.R, value);
+            var newGreen = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.G, higherGradientColorByValue.Color.G, value);
+            var newBlue = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.B, higherGradientColorByValue.Color.B, value);
 
-            var newRed = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Color.R, higherGradientColorByValue.Color.R, value, numbersOfValues);
-            var newGreen = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Color.G, higherGradientColorByValue.Color.G, value, numbersOfValues);
-            var newBlue = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Color.B, higherGradientColorByValue.Color.B, value, numbersOfValues);
-
-            return Color.FromArgb(newRed, newGreen, newBlue);
+            return Color.FromArgb(Convert.ToInt32(newRed), Convert.ToInt32(newGreen), Convert.ToInt32(newBlue));
         }
     }
 }
