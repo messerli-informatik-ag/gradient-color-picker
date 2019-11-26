@@ -1,7 +1,10 @@
 ﻿using System.Drawing;
 
+#pragma warning disable CS0660, CS0661
+
 namespace Gradient_color_picker
 {
+    [Equals]
     public class GradientColorByValue
     {
         public GradientColorByValue(Color color, int value)
@@ -13,5 +16,9 @@ namespace Gradient_color_picker
         public Color Color { get; }
 
         public int Value { get; }
+
+        public static bool operator ==(GradientColorByValue left, GradientColorByValue right) => Operator.Weave(left, right);
+
+        public static bool operator !=(GradientColorByValue left, GradientColorByValue right) => Operator.Weave(left, right);
     }
 }
