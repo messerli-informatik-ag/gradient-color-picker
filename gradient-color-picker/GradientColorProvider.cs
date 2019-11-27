@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.ExceptionServices;
@@ -13,11 +14,7 @@ namespace Messerli.GradientColorPicker
 
         public GradientColorProvider(IImmutableList<GradientColorByValue> gradientColorList)
         {
-            if (!gradientColorList.Any())
-            {
-                throw new InvalidOperationException("No gradient color defined");
-            }
-
+            ThrowExceptionIfListEmpty(gradientColorList);
             _gradientColorList = gradientColorList.OrderBy(item => item.Value).ToImmutableList();
         }
 
@@ -63,6 +60,14 @@ namespace Messerli.GradientColorPicker
 
         private static Point CreatePoint(int x, int y)
             => new Point(x, y);
+
+        private static void ThrowExceptionIfListEmpty(IImmutableList<GradientColorByValue> gradientColorList)
+        {
+            if (!gradientColorList.Any())
+            {
+                throw new InvalidOperationException("No gradient color defined");
+            }
+        }
     }
 
     internal static class EnumerableExtensions
