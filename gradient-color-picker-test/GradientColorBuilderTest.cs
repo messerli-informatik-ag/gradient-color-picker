@@ -14,7 +14,7 @@ namespace Messerli.GradientColorPickerTest
             var gradientColorProvider = WithColor(new GradientColorByValue(Color.Red, -10))
                 .Build();
 
-            Assert.Equal(gradientColorProvider.PickColor(-10), Color.Red);
+            Assert.Equal(gradientColorProvider.PickColor(-10).ToArgb(), Color.Red.ToArgb());
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace Messerli.GradientColorPickerTest
                 .Add(new GradientColorByValue(Color.Blue, 10))
                 .Build();
 
-            Assert.Equal(gradientColorProvider.PickColor(0), Color.Green);
+            Assert.Equal(gradientColorProvider.PickColor(0).ToArgb(), Color.Green.ToArgb());
         }
 
         [Fact]

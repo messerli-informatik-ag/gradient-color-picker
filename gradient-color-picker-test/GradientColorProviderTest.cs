@@ -19,9 +19,9 @@ namespace Messerli.GradientColorPickerTest
         [Fact]
         public void ChecksGradientColorPicker()
         {
-            Assert.Equal(_gradientColorProvider.PickColor(RedColorValue), Color.Red);
-            Assert.Equal(_gradientColorProvider.PickColor(GreenColorValue), Color.Green);
-            Assert.Equal(_gradientColorProvider.PickColor(BlueColorValue), Color.Blue);
+            Assert.Equal(_gradientColorProvider.PickColor(RedColorValue).ToArgb(), Color.Red.ToArgb());
+            Assert.Equal(_gradientColorProvider.PickColor(GreenColorValue).ToArgb(), Color.Green.ToArgb());
+            Assert.Equal(_gradientColorProvider.PickColor(BlueColorValue).ToArgb(), Color.Blue.ToArgb());
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace Messerli.GradientColorPickerTest
         [MemberData(nameof(GetGradientColorData))]
         public void CalculatesLinearInterpolationForGradientColor(int value, Color selectedColor)
         {
-            Assert.Equal(_gradientColorProvider.PickColor(value), selectedColor);
+            Assert.Equal(_gradientColorProvider.PickColor(value).ToArgb(), selectedColor.ToArgb());
         }
 
         public static TheoryData<int, Color> GetGradientColorData()
