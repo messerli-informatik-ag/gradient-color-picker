@@ -29,7 +29,18 @@ namespace Messerli.GradientColorPickerTest
         }
 
         [Fact]
-        public void ErrorsOnSameValueAdded()
+        public void ErrorsOnInitializeAndAddSameValue()
+        {
+            const int sameValue = 0;
+            Assert.Throws<InvalidOperationException>(() =>
+                WithColor(new GradientColorByValue(Color.Red, sameValue))
+                    .Add(new GradientColorByValue(Color.Green, sameValue))
+                    .Add(new GradientColorByValue(Color.Blue, 10))
+                    .Build());
+        }
+
+        [Fact]
+        public void ErrorsOnAddSameValue()
         {
             const int sameValue = 0;
             Assert.Throws<InvalidOperationException>(() =>
