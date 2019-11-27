@@ -31,7 +31,7 @@ namespace Messerli.GradientColorPicker
         }
 
         public GradientColorProvider Build()
-            => new GradientColorProvider(_gradientColorList.OrderBy(item => item.Value).ToImmutableList());
+            => new GradientColorProvider(_gradientColorList);
 
         private static GradientColorBuilder ShallowClone(IImmutableList<GradientColorByValue> gradientColors)
             => new GradientColorBuilder(gradientColors);

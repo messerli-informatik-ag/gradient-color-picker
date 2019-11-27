@@ -12,44 +12,58 @@ namespace Messerli.GradientColorPicker
 
         public GradientColorProvider(IImmutableList<GradientColorByValue> gradientColorList)
         {
-            _gradientColorList = gradientColorList;
+            _gradientColorList = gradientColorList.OrderBy(item => item.Value).ToImmutableList();
         }
 
         public Color PickColor(int value)
         {
-            if (_gradientColorList.Any(item => item.Value == value))
+            if (!_gradientColorList.Any())
             {
-                return _gradientColorList.First(item => item.Value == value).Color;
+                throw new InvalidOperationException("No gradient color defined");
             }
 
-            var nextSmallerGradientColorByValue = _gradientColorList.ToList().LastOrDefault(item => item.Value < value);
-            var nextHigherGradientColorByValue = _gradientColorList.ToList().FirstOrDefault(item => item.Value > value);
+            if (value <= _gradientColorList.First().Value)
+            {
+                return _gradientColorList.First().Color;
+            }
 
-            return GetColor(nextSmallerGradientColorByValue, nextHigherGradientColorByValue, value);
+            if (value >= _gradientColorList.Last().Value)
+            {
+                return _gradientColorList.Last().Color;
+            }
+
+            var resultPair = _gradientColorList
+                .Pairwise()
+                .First(pair => value >= pair.First.Value && value <= pair.Second.Value);
+
+            return GetColor(resultPair.First, resultPair.Second, value);
         }
 
-        private static Color GetColor(GradientColorByValue? smallerGradientColorByValue, GradientColorByValue? higherGradientColorByValue, int value)
+        private static Color GetColor(GradientColorByValue smallerGradientColorByValue, GradientColorByValue higherGradientColorByValue, int value)
         {
-            if (smallerGradientColorByValue is null && higherGradientColorByValue is null)
-            {
-                throw new InvalidOperationException();
-            }
-
-            if (smallerGradientColorByValue is null)
-            {
-                return higherGradientColorByValue!.Color;
-            }
-
-            if (higherGradientColorByValue is null)
-            {
-                return smallerGradientColorByValue!.Color;
-            }
-
             var newRed = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.R, higherGradientColorByValue.Color.R, value);
             var newGreen = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.G, higherGradientColorByValue.Color.G, value);
             var newBlue = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.B, higherGradientColorByValue.Color.B, value);
 
             return Color.FromArgb(Convert.ToInt32(newRed), Convert.ToInt32(newGreen), Convert.ToInt32(newBlue));
+        }
+    }
+
+    internal static class EnumerableExtensions
+    {
+        public static IEnumerable<(T First, T Second)> Pairwise<T>(this IEnumerable<T> source)
+        {
+            using (var it = source.GetEnumerator())
+            {
+                if (it.MoveNext())
+                {
+                    var previous = it.Current;
+                    while (it.MoveNext())
+                    {
+                        yield return (previous, previous = it.Current);
+                    }
+                }
+            }
         }
     }
 }
