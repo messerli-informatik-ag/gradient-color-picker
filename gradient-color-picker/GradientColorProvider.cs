@@ -9,7 +9,7 @@ namespace Messerli.GradientColorPicker
 {
     public class GradientColorProvider : IGradientColorProvider
     {
-        private readonly IReadOnlyCollection<GradientColorByValue> _gradientColorList;
+        private readonly IImmutableList<GradientColorByValue> _gradientColorList;
 
         public GradientColorProvider(IImmutableList<GradientColorByValue> gradientColorList)
         {
