@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 
 namespace Messerli.GradientColorPicker
 {
@@ -12,16 +13,16 @@ namespace Messerli.GradientColorPicker
 
         public GradientColorProvider(IImmutableList<GradientColorByValue> gradientColorList)
         {
+            if (!gradientColorList.Any())
+            {
+                throw new InvalidOperationException("No gradient color defined");
+            }
+
             _gradientColorList = gradientColorList.OrderBy(item => item.Value).ToImmutableList();
         }
 
         public Color PickColor(int value)
         {
-            if (!_gradientColorList.Any())
-            {
-                throw new InvalidOperationException("No gradient color defined");
-            }
-
             if (value <= _gradientColorList.First().Value)
             {
                 return _gradientColorList.First().Color;
@@ -32,21 +33,36 @@ namespace Messerli.GradientColorPicker
                 return _gradientColorList.Last().Color;
             }
 
-            var resultPair = _gradientColorList
+            return GetColor(FindPair(value), value);
+        }
+
+        public (GradientColorByValue First, GradientColorByValue Second) FindPair(int value)
+            => _gradientColorList
                 .Pairwise()
                 .First(pair => value >= pair.First.Value && value <= pair.Second.Value);
 
-            return GetColor(resultPair.First, resultPair.Second, value);
-        }
-
-        private static Color GetColor(GradientColorByValue smallerGradientColorByValue, GradientColorByValue higherGradientColorByValue, int value)
+        private static Color GetColor((GradientColorByValue First, GradientColorByValue Second) pair, int value)
         {
-            var newRed = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.R, higherGradientColorByValue.Color.R, value);
-            var newGreen = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.G, higherGradientColorByValue.Color.G, value);
-            var newBlue = LinearInterpolation.GetDataPoint(smallerGradientColorByValue.Value, higherGradientColorByValue.Value, smallerGradientColorByValue.Color.B, higherGradientColorByValue.Color.B, value);
+            var red = LinearInterpolation.CalculateInterpolationValue(
+                CreatePoint(pair.First.Value, pair.First.Color.R),
+                CreatePoint(pair.Second.Value, pair.Second.Color.R),
+                value);
 
-            return Color.FromArgb(Convert.ToInt32(newRed), Convert.ToInt32(newGreen), Convert.ToInt32(newBlue));
+            var green = LinearInterpolation.CalculateInterpolationValue(
+                CreatePoint(pair.First.Value, pair.First.Color.G),
+                CreatePoint(pair.Second.Value, pair.Second.Color.G),
+                value);
+
+            var blue = LinearInterpolation.CalculateInterpolationValue(
+                CreatePoint(pair.First.Value, pair.First.Color.B),
+                CreatePoint(pair.Second.Value, pair.Second.Color.B),
+                value);
+
+            return Color.FromArgb(red, green, blue);
         }
+
+        private static Point CreatePoint(int x, int y)
+            => new Point(x, y);
     }
 
     internal static class EnumerableExtensions

@@ -1,10 +1,12 @@
-﻿namespace Messerli.GradientColorPicker
+﻿using System.Drawing;
+
+namespace Messerli.GradientColorPicker
 {
     public static class LinearInterpolation
     {
-        public static double GetDataPoint(int x1, int x2, int y1, int y2, int x)
+        public static int CalculateInterpolationValue(Point p1, Point p2, int x)
         {
-            return ((x - x1) * (y2 - y1) / (x2 - x1)) + y1;
+            return ((x - p1.X) * (p2.Y - p1.Y) / (p2.X - p1.X)) + p1.Y;
         }
     }
 }
