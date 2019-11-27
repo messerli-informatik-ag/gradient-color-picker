@@ -26,9 +26,10 @@ namespace Messerli.GradientColorPicker
                 return firstGradientColorValue.Color;
             }
 
-            if (value >= _gradientColorList.Last().Value)
+            var lastGradientColorValue = _gradientColorList.Last();
+            if (value >= lastGradientColorValue.Value)
             {
-                return _gradientColorList.Last().Color;
+                return lastGradientColorValue.Color;
             }
 
             return GetColor(FindPair(value), value);
