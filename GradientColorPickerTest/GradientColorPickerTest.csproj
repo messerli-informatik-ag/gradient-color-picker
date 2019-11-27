@@ -14,6 +14,6 @@
   </PropertyGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\gradient-color-picker\GradientColorPicker.csproj" />
+    <ProjectReference Include="..\GradientColorPicker\GradientColorPicker.csproj" />
   </ItemGroup>
 </Project>
