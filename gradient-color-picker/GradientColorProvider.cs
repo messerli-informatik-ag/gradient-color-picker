@@ -20,9 +20,10 @@ namespace Messerli.GradientColorPicker
 
         public Color PickColor(int value)
         {
-            if (value <= _gradientColorList.First().Value)
+            var firstGradientColorValue = _gradientColorList.First();
+            if (value <= firstGradientColorValue.Value)
             {
-                return _gradientColorList.First().Color;
+                return firstGradientColorValue.Color;
             }
 
             if (value >= _gradientColorList.Last().Value)
