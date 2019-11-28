@@ -20,9 +20,9 @@ namespace Messerli.GradientColorPickerTest
             var oldVariantColor = GetOldVariantColor(entropy);
             var newVariantColor = GetNewVariantColor(Convert.ToInt32(entropy));
 
-            ChecksColorValues(newVariantColor.R, oldVariantColor.R);
-            ChecksColorValues(newVariantColor.G, oldVariantColor.G);
-            ChecksColorValues(newVariantColor.B, oldVariantColor.B);
+            AssertAlmostEquals(newVariantColor.R, oldVariantColor.R);
+            AssertAlmostEquals(newVariantColor.G, oldVariantColor.G);
+            AssertAlmostEquals(newVariantColor.B, oldVariantColor.B);
         }
 
         public static TheoryData<double> GetEntropy()
@@ -38,10 +38,10 @@ namespace Messerli.GradientColorPickerTest
                 { 100 },
             };
 
-        private static void ChecksColorValues(byte newColorValue, byte oldColorValue)
+        private static void AssertAlmostEquals(byte lhs, byte rhs)
         {
             const int tolerance = 1;
-            Assert.True(Math.Abs(Convert.ToInt32(newColorValue) - Convert.ToInt32(oldColorValue)) <= tolerance);
+            Assert.True(Math.Abs(Convert.ToInt32(lhs) - Convert.ToInt32(rhs)) <= tolerance);
         }
 
         private static Color GetOldVariantColor(double entropy)
