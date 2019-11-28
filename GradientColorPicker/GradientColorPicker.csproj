@@ -1,15 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RootNamespace>Messerli.GradientColorPicker</RootNamespace>
-    <AssemblyName>Messerli.GradientColorPicker</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <LangVersion>8.0</LangVersion>
-    <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
+    <PropertyGroup>
+        <Version>0.1.0</Version>
+        <RootNamespace>Messerli.GradientColorPicker</RootNamespace>
+        <AssemblyName>Messerli.GradientColorPicker</AssemblyName>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>8.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+    <PropertyGroup>
+        <RepositoryUrl>https://github.com/messerli-informatik-ag/gradient-color-picker</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageId>Messerli.GradientColorPicker</PackageId>
+        <PackageTags>gradient color</PackageTags>
+        <PackageLicenseExpression>MIT OR Apache-2.0</PackageLicenseExpression>
+        <Authors>Sergio Sutter</Authors>
+        <Copyright>© Messerli Informatik AG. All rights reserved.</Copyright>
+        <Description>Picks gradient color</Description>
+    </PropertyGroup>
+    <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
