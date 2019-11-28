@@ -7,8 +7,6 @@ namespace Messerli.GradientColorPickerTest
 {
     public class IntegrationTest
     {
-        private const double GoodPasswordEntropy = 40.0;
-        private const double BaseBrightness = 191.0;
         private static readonly GradientColorProvider GradientColorProvider = GradientColorBuilder
             .WithColor(new GradientColorByValue(Color.FromArgb(255, 191, 191), 0))
             .Add(new GradientColorByValue(Color.FromArgb(255, 255, 191), 20))
@@ -42,9 +40,10 @@ namespace Messerli.GradientColorPickerTest
 
         private static Color GetOldVariantColor(double entropy)
         {
-            var red = (int)Math.Min((128.0f * (1 - GetNormalizedMetric(entropy))) + BaseBrightness, 255.0);
-            var green = (int)Math.Min((128.0f * GetNormalizedMetric(entropy)) + BaseBrightness, 255.0);
-            const int blue = (int)BaseBrightness;
+            const double baseBrightness = 191.0;
+            var red = (int)Math.Min((128.0f * (1 - GetNormalizedMetric(entropy))) + baseBrightness, 255.0);
+            var green = (int)Math.Min((128.0f * GetNormalizedMetric(entropy)) + baseBrightness, 255.0);
+            const int blue = (int)baseBrightness;
 
             return Color.FromArgb(red, green, blue);
         }
@@ -54,7 +53,8 @@ namespace Messerli.GradientColorPickerTest
 
         private static double GetNormalizedMetric(double entropy)
         {
-            return Math.Min(entropy / GoodPasswordEntropy, 1.0);
+            const double goodPasswordEntropy = 40.0;
+            return Math.Min(entropy / goodPasswordEntropy, 1.0);
         }
     }
 }
