@@ -17,7 +17,7 @@ namespace Messerli.GradientColorPickerTest
 
         [Theory]
         [MemberData(nameof(GetEntropy))]
-        public void PasswordStrengthColor(double entropy)
+        public void NewAlgorithmProducesSameValesAsOldAlgorithm(double entropy)
         {
             var oldVariantColor = GetOldVariantColor(entropy);
             var newVariantColor = GetNewVariantColor(Convert.ToInt32(entropy));
