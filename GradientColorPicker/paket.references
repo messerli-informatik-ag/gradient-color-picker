@@ -1,3 +1,4 @@
 System.Collections.Immutable
 Fody
 Equals.Fody
+System.ValueTuple
