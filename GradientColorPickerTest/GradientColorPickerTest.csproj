@@ -6,7 +6,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;net46</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.1</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
