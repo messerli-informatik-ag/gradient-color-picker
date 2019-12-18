@@ -3,5 +3,6 @@ obj/
 /packages/
 FodyWeavers.xsd
 /paket.lock
-.vs/
-.idea/
+/.vs/
+/.idea/
+/.paket/

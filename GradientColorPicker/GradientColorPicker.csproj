@@ -6,7 +6,7 @@
         <AssemblyName>Messerli.GradientColorPicker</AssemblyName>
     </PropertyGroup>
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFrameworks>netstandard2.1;net46</TargetFrameworks>
         <LangVersion>8.0</LangVersion>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -22,5 +22,9 @@
         <Copyright>© Messerli Informatik AG. All rights reserved.</Copyright>
         <Description>Picks gradient color</Description>
     </PropertyGroup>
+    <ItemGroup>
+        <!---https://andrewlock.net/using-reference-assemblies-to-build-net-framework-libararies-on-linux-without-mono/-->
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.0-preview.2" />
+    </ItemGroup>
     <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
