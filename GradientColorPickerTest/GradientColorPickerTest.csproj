@@ -13,7 +13,9 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GradientColorPicker\GradientColorPicker.csproj" />
+      <!---https://andrewlock.net/using-reference-assemblies-to-build-net-framework-libararies-on-linux-without-mono/-->
+      <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.0-preview.2" />
+      <ProjectReference Include="..\GradientColorPicker\GradientColorPicker.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
