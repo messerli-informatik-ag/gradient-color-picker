@@ -4,4 +4,4 @@
 - Initial release
 
 ## 0.1.1
-- Supports .NET Framework 4.6
+- Added support for .NET Framework 4.6
