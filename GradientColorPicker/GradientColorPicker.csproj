@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <Version>0.1.1</Version>
@@ -18,7 +18,6 @@
         <PackageId>Messerli.GradientColorPicker</PackageId>
         <PackageTags>gradient color</PackageTags>
         <PackageLicenseExpression>MIT OR Apache-2.0</PackageLicenseExpression>
-        <Authors>Sergio Sutter</Authors>
         <Copyright>© Messerli Informatik AG. All rights reserved.</Copyright>
         <Description>Picks gradient color</Description>
     </PropertyGroup>
