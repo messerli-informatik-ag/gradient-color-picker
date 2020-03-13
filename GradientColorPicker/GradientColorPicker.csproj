@@ -25,5 +25,10 @@
         <!---https://andrewlock.net/using-reference-assemblies-to-build-net-framework-libararies-on-linux-without-mono/-->
         <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.0-preview.2" />
     </ItemGroup>
-    <Import Project="..\.paket\Paket.Restore.targets" />
+    <ItemGroup>
+        <PackageReference Include="System.Collections.Immutable" />
+        <PackageReference Include="Fody" />
+        <PackageReference Include="Equals.Fody" />
+        <PackageReference Include="System.ValueTuple" />
+    </ItemGroup>
 </Project>
